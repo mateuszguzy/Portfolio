@@ -35,7 +35,7 @@ def main():
     # welcome info and program clarification
     print(simple_title_frame("Morse Code Converter"))
     print("(1) Convert sentence to Morse Code")
-    print("(2) Convert Morse Code to Latin alphabet (to be added)")
+    print("(2) Convert Morse Code to Latin alphabet")
     print("(3) Quit\n")
     mode = input("Please choose translation mode:\n")
     if mode == "1":
