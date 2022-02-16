@@ -1,0 +1,31 @@
+{% include 'header.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+<section class="page-section cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 mx-auto">
+                <div class="cta-inner bg-faded text-center rounded">
+                    <h2 class="section-heading mb-3">
+                        <span class="section-heading-lower">Add Cafe</span>
+                    </h2>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                    <form action="" method="post" class="form" role="form">
+                    {{ form.csrf_token() }}
+                    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'footer.html' %}
