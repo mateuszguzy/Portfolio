@@ -3,7 +3,7 @@
 <section class="page-section cta">
     <div class="container">
         <div class="row">
-            <div class="col-xl-6 mx-auto">
+            <div class="col-xl-4 mx-auto">
                 <div class="cta-inner bg-faded text-center rounded">
                     <h2 class="section-heading mb-3">
                         <span class="section-heading-lower">Add Cafe</span>
@@ -19,8 +19,26 @@
                     {% endwith %}
                     <form action="" method="post" class="form" role="form">
                     {{ form.csrf_token() }}
-                    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
-
+<!--                    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}-->
+                        {{ wtf.form_field(form.name, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.map_url, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.img_url, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.location, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.has_sockets, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.has_wifi, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.has_toilet, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.can_take_calls, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.coffee_price, class_="form-control") }}
+                        <br>
+                        {{ wtf.form_field(form.submit, class_="btn btn-secondary") }}
                     </form>
                 </div>
             </div>

@@ -1,14 +1,10 @@
 {% include 'header.html' %}
-<!-- Back to top button -->
-<button type="button" class="btn btn-primary btn-floating btn-lg" id="btn-back-to-top">
-    <i class="fas fa-solid fa-circle-arrow-up"></i>
-</button>
 <!-- Filters form -->
 <section class="page-section">
     <div class="container">
         <div class="product-item">
             <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ms-auto rounded">
+                <div class="bg-faded p-5 d-flex ms-auto rounded" id="filters-bar">
                     <h4 class="section-heading mb-0">
                         <b>FILTERS:</b>
                         <form method="post" class="navbar-nav mx-auto nav-link text-uppercase">
@@ -22,6 +18,17 @@
         </div>
     </div>
 </section>
+<div class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-dark alert-position-custom" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+</div>
 {% for cafe in cafes %}
 <section class="page-section">
     <div class="container">
@@ -68,6 +75,8 @@
                         <i class="fas fa-toilet-paper mx-3" style="color:{{ toilet_color }}"
                            aria-hidden="true"></i>
                         <i class="fas fa-phone mx-3" style="color:{{ call_color }}" aria-hidden="true"></i>
+                        {{ cafe.coffee_price }}
+                        <i class="fas fa-solid fa-mug-saucer"></i>
                     </h5>
                     <hr>
                     <h5>Location:</h5>
@@ -84,31 +93,3 @@
 {% endfor %}
 
 {% include 'footer.html' %}
-
-<script>
-    //Get the button
-let mybutton = document.getElementById("btn-back-to-top");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-  if (
-    document.body.scrollTop > 20 ||
-    document.documentElement.scrollTop > 20
-  ) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-// When the user clicks on the button, scroll to the top of the document
-mybutton.addEventListener("click", backToTop);
-
-function backToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-</script>

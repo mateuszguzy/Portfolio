@@ -4914,6 +4914,11 @@ textarea.form-control-lg {
   border-radius: 0.25rem;
 }
 
+.alert-position-custom {
+  position: viewport;
+  left: 45vw;
+}
+
 .alert-heading {
   color: inherit;
 }
@@ -11496,4 +11501,15 @@ p {
   bottom: 20px;
   right: 20px;
   display: none;
+}
+
+#filters-bar {
+  position: fixed;
+  top: 350px;
+  right:35px;
+  display: none;
+}
+
+#name-field-input {
+  width: 50%;
 }

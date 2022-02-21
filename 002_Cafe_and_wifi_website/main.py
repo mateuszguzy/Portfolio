@@ -29,8 +29,8 @@ login_manager.init_app(app)
 class Cafe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), unique=True, nullable=False)
-    map_url = db.Column(db.String(500), nullable=False)
-    img_url = db.Column(db.String(500), nullable=False)
+    map_url = db.Column(db.String(500), unique=True, nullable=False)
+    img_url = db.Column(db.String(500), unique=True, nullable=False)
     location = db.Column(db.String(250), nullable=False)
     has_sockets = db.Column(db.Boolean, nullable=False)
     has_toilet = db.Column(db.Boolean, nullable=False)
@@ -49,7 +49,7 @@ class User(UserMixin, db.Model):
     name = db.Column(db.String(1000))
 
 
-# db.create_all()
+db.create_all()
 
 
 # custom decorator that only allows admin to access certain views
@@ -72,8 +72,6 @@ def index():
 @app.route('/register', methods=["GET", "POST"])
 def register():
     form = RegisterUser()
-    print(form.data)
-
     if form.validate_on_submit():
         # create new user record with hashed password
         new_user = User()
@@ -115,15 +113,35 @@ def load_user(user_id):
 
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect("/")
 
 
+@app.route("/add_cafe", methods=["POST", "GET"])
 @login_required
-@app.route("/add_cafe")
 def add_cafe():
     form = AddCafe()
+    if form.validate_on_submit():
+        new_cafe = Cafe()
+        new_cafe.name = form.name.data
+        new_cafe.map_url = form.map_url.data
+        new_cafe.img_url = form.img_url.data
+        new_cafe.location = form.location.data
+        new_cafe.has_sockets = form.has_sockets.data
+        new_cafe.has_wifi = form.has_wifi.data
+        new_cafe.has_toilet = form.has_toilet.data
+        new_cafe.can_take_calls = form.can_take_calls.data
+        new_cafe.coffee_price = "£" + form.coffee_price.data
+        try:
+            db.session.add(new_cafe)
+            db.session.commit()
+            flash("Cafe added successfully!")
+            return redirect("/cafes")
+        except exc.IntegrityError:
+            flash("Given Cafe is already in the system.")
+            return redirect("/cafes")
     return render_template("add_cafe.html", form=form)
 
 
