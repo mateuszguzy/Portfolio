@@ -11505,7 +11505,7 @@ p {
 
 #filters-bar {
   position: fixed;
-  top: 350px;
+  top: 200px;
   right:35px;
   display: none;
 }

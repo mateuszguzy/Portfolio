@@ -87,7 +87,7 @@ def register():
             flash("Given email is already registered! Please log in.")
             return redirect("/login")
     else:
-        return render_template("register.html", form=form)
+        return render_template("change_password.html", form=form)
 
 
 @app.route('/login', methods=["GET", "POST"])
