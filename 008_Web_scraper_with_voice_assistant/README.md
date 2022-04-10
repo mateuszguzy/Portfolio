@@ -1,3 +1,3 @@
-Application for some simple scraping of Air BnB site. 
+Project repository at:
 
-Allows to state a couple of search criteria, and allows to use voice assistant to handle filling form for us.   
+https://github.com/mateuszguzy/Web_scraper_with_VA

@@ -20,7 +20,7 @@ def main():
 
 def player_vs_player():
     # choose starting player randomly
-    starting_player = random.randint(a=1, b=2)
+    starting_player = random.randint(1, 2)
     # show users which players start the game
     # one of the players is an "odd number player", other "even number player"
     # used to distinguish what sign will be placed
@@ -30,7 +30,7 @@ def player_vs_player():
     else:
         print(30 * "-" + "\n' O ' stars the game")
         turn = 2
-    # prepare empty game board out of parametric table
+    # prepare empty game board.py out of parametric table
     game_board = ParametricTable(title="TIC TAC TOE", rows=3, columns=3)
     game_board.create_title()
     game_board.table_content()
@@ -56,7 +56,7 @@ def player_vs_cpu():
     else:
         print(30 * "-" + "\nCPU ' O ' stars the game")
         turn = 2
-    # prepare empty game board out of parametric table
+    # prepare empty game board.py out of parametric table
     game_board = ParametricTable(title="TIC TAC TOE", rows=3, columns=3)
     game_board.create_title()
     game_board.table_content()
@@ -84,7 +84,7 @@ def cpu_turn(game_board):
     cpu_field = random.randint(0, (len(possible_fields) - 1))
     # set CPU sign in that field
     game_board.content[possible_fields[cpu_field]] = "O"
-    # update game board
+    # update game board.py
     game_board.update_table_data()
     # check if CPU has won
     if check_if_won(game_board):
@@ -92,7 +92,8 @@ def cpu_turn(game_board):
 
 
 def player_input(game_board, turn, sign="", cpu=False):
-    # show users current board state
+    # TODO - when user puts wrong field, ask again for input
+    # show users current board.py state
     game_board.print_table()
     if sign == "":
         # if "even player" was drawn set player sign to "X"
@@ -102,12 +103,12 @@ def player_input(game_board, turn, sign="", cpu=False):
             sign = "O"
     # take user input and sanitize it
     choose_field = input("Please choose a field to place a sign: (e.g. 'B2', fields table above.)\n").upper().strip()
-    # check if chosen field is part of board game
+    # check if chosen field is part of board.py game
     if choose_field in game_board.content.keys():
         # check if chosen field is an empty one, if yes, place user sign there
         if game_board.content[choose_field] == "":
             game_board.content[choose_field] = sign
-            # update board view
+            # update board.py view
             game_board.update_table_data()
         else:
             print("\nFIELD ALREADY TAKEN!")
@@ -165,7 +166,7 @@ def check_if_won(game_board):
 
 
 def fields_table():
-    # prepare example game board to show users what are the fields names
+    # prepare example game board.py to show users what are the fields names
     game_fields = ParametricTable(rows=3, columns=3, cell_width=6)
     game_fields.table_content()
     for key in game_fields.content.keys():
