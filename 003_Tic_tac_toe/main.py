@@ -112,7 +112,7 @@ def player_input(game_board, turn, sign="", cpu=False):
             game_board.update_table_data()
         else:
             print("\nFIELD ALREADY TAKEN!")
-            player_input(game_board, turn)
+            player_input(game_board, turn, sign=sign, cpu=cpu)
     else:
         print("\nPlease write correct field name!")
     # increase turn value to switch to another player
@@ -151,12 +151,12 @@ def check_if_won(game_board):
             # when three fields are filled from above scenarios player wins
             if counter_o == 3:
                 game_board.print_table()
-                print("GAME OVER\n' O ' WINS!'")
-                quit()
+                print("GAME OVER\n' O ' WINS!'\n")
+                play_again()
             elif counter_x == 3:
                 game_board.print_table()
-                print("GAME OVER\n' X ' WINS!")
-                quit()
+                print("GAME OVER\n' X ' WINS!\n")
+                play_again()
     # when players do not fill three fields from scenarios and all fields are filled with signs, quit the game
     if "" not in game_board.content.values():
         game_board.print_table()
@@ -185,6 +185,14 @@ def simple_title_frame(text):
     bottom_bar = ((2 * text_length) * frame_symbol)
     frame = top_bar + middle_bar + bottom_bar
     return frame
+
+
+def play_again():
+    answer = input("Do you want to play again?\n(1) Yes\n(2) No\n")
+    if answer == "1":
+        return main()
+    else:
+        return quit()
 
 
 if __name__ == "__main__":
